@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./assets/icons/icons.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <title>Form with FLEX</title>
+  </head>
+  <body>
+    <form>
+      <h1>CREATE AN ACCOUNT</h1>
+      <p>We always keep your name and email address private</p>
+      <div class="inputs-wrapper">
+        <input
+          type="text"
+          name="first-name"
+          placeholder="First name"
+          aria-label="First name"
+        />
+        <input
+          type="text"
+          name="last-name"
+          placeholder="Last name"
+          aria-label="Last name"
+        />
+        <input
+          type="text"
+          name="display-name"
+          placeholder="Display name"
+          aria-label="Display name"
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email address"
+          aria-label="Email address"
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          aria-label="Password"
+        />
+        <input
+          type="password"
+          name="password-confirmation"
+          placeholder="Password confirmation"
+          aria-label="Password confirmation"
+        />
+      </div>
+      <div class="radio-wrapper">
+        <input class="radio-input" type="radio" name="join-as" id="buyer" />
+        <div class="radio-content">
+          <label for="buyer">Join As a Buyer</label>
+          <p class="radio-text">
+            I`m looking for a Name, Logo or Tagline for my business, brand or
+            product
+          </p>
+        </div>
+      </div>
+      <div class="radio-wrapper">
+        <input type="radio" name="join-as" id="seller" />
+        <div class="radio-content">
+          <label for="seller">Join As a Creative or Marketplace Seller</label>
+          <p class="radio-text">
+            I plan to submit name ideas, Logo designs or sell names in Domain
+            Marketplace
+          </p>
+        </div>
+      </div>
+      <div class="checkbox-wrapper">
+        <input type="checkbox" name="terms" id="terms" />
+        <label for="terms"
+          >Allow Squadhelp to send marketing/promotional offers from time to
+          time</label
+        >
+      </div>
+      <button type="submit">Create Account</button>
+    </form>
+  </body>
+</html>
