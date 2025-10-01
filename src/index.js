@@ -13,12 +13,12 @@ class Person {
 
 function onSubmit(event) {
     event.preventDefault();
-    const form = event.target;
+    const formElements = event.target.elements;
 
-    const firstNameValue = form.elements.firstName.value.trim();
-    const lastNameValue = form.elements.lastName.value.trim();
-    const nickNameValue = form.elements.nickName.value.trim();
-    const emailValue = form.elements.email.value.trim();
+    const firstNameValue = formElements.firstName.value.trim();
+    const lastNameValue = formElements.lastName.value.trim();
+    const nickNameValue = formElements.nickName.value.trim();
+    const emailValue = formElements.email.value.trim();
 
     if (!lastNameValue) {
         console.log('Cannot save: Last Name is required as a key');
@@ -27,11 +27,12 @@ function onSubmit(event) {
     }
 
     const person = new Person(
-        firstNameValue || 'Value does not provided',
-        lastNameValue || 'Value does not provided',
-        nickNameValue || 'Value does not provided',
-        emailValue || 'Value does not provided'
+        firstNameValue || 'Not provided',
+        lastNameValue || 'Not provided',
+        nickNameValue || 'Not provided',
+        emailValue || 'Not provided'
     );
+
     localStorage.setItem(lastNameValue, JSON.stringify(person));
 
     form.reset();
