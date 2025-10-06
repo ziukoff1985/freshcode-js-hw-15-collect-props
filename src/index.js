@@ -2,8 +2,14 @@
 
 const form = document.querySelector('form');
 
+// Final version
 class Person {
-    constructor(firstName, lastName, nickName, email) {
+    constructor(
+        firstName = 'Not provided',
+        lastName,
+        nickName = 'Not provided',
+        email = 'Not provided'
+    ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
@@ -11,34 +17,70 @@ class Person {
     }
 }
 
-function onSubmit(event) {
+function onSubmitForm(event) {
     event.preventDefault();
-    const formElements = event.target.elements;
+    const formElements = form.elements;
 
-    const firstNameValue = formElements.firstName.value.trim();
-    const lastNameValue = formElements.lastName.value.trim();
-    const nickNameValue = formElements.nickName.value.trim();
-    const emailValue = formElements.email.value.trim();
+    const person = new Person();
 
-    if (!lastNameValue) {
-        console.log('Cannot save: Last Name is required as a key');
-        form.reset();
+    for (const { name, value, tagName } of formElements) {
+        if (name && tagName === 'INPUT' && value.trim()) {
+            person[name] = value.trim();
+        }
+    }
+
+    if (!person.lastName) {
+        console.log('Cannot save: Last Name is required and cannot be empty');
         return;
     }
 
-    const person = new Person(
-        firstNameValue || 'Not provided',
-        lastNameValue || 'Not provided',
-        nickNameValue || 'Not provided',
-        emailValue || 'Not provided'
-    );
-
-    localStorage.setItem(lastNameValue, JSON.stringify(person));
-
+    localStorage.setItem(person.lastName, JSON.stringify(person));
     form.reset();
 }
 
-form.addEventListener('submit', onSubmit);
+form.addEventListener('submit', onSubmitForm);
+
+// * Version with event.target.elements
+
+// class Person {
+//     constructor(firstName, lastName, nickName, email) {
+//         this.firstName = firstName;
+//         this.lastName = lastName;
+//         this.nickName = nickName;
+//         this.email = email;
+//     }
+// }
+
+// function onSubmit(event) {
+//     event.preventDefault();
+//     const formElements = event.target.elements;
+
+//     const firstNameValue = formElements.firstName.value.trim();
+//     const lastNameValue = formElements.lastName.value.trim();
+//     const nickNameValue = formElements.nickName.value.trim();
+//     const emailValue = formElements.email.value.trim();
+
+//     if (!lastNameValue) {
+//         console.log('Cannot save: Last Name is required as a key');
+//         form.reset();
+//         return;
+//     }
+
+//     const person = new Person(
+//         firstNameValue || 'Not provided',
+//         lastNameValue || 'Not provided',
+//         nickNameValue || 'Not provided',
+//         emailValue || 'Not provided'
+//     );
+
+//     localStorage.setItem(lastNameValue, JSON.stringify(person));
+
+//     form.reset();
+// }
+
+// form.addEventListener('submit', onSubmit);
+
+// * Version with direct input.value
 
 // const firstName = document.querySelector('input[name="first-name"]');
 // const lastName = document.querySelector('input[name="last-name"]');
